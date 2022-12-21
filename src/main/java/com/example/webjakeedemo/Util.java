@@ -37,9 +37,8 @@ public class Util {
                 ""+pass);
     }
 
-    public static List<String> sqlQuery(Map<String,String> paramSet, String currQueryType) throws SQLException {
+    public static ResultSet sqlQuery(Map<String,String> paramSet, String currQueryType) throws SQLException {
         Statement statement = connToPG(paramSet).createStatement();
-        List<String> resultList = new LinkedList<>();
         ResultSet rs;
 
         switch (currQueryType) {
@@ -54,17 +53,9 @@ public class Util {
             }
         }
 
-         while (rs.next()) {
-             String rec = "";
-             for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
-                 rec = rec + rs.getString(i) + "\t";
-             }
-             resultList.add(rec);
-         }
+         //statement.close();
 
-         statement.close();
-
-         return resultList;
+         return rs;
     }
 
 }

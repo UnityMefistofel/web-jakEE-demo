@@ -22,10 +22,18 @@ public class BooksCount extends HttpServlet {
         PrintWriter writer = response.getWriter();
 
         try {
-            List resultList = Util.sqlQuery(paramSet, "BookCount");
-            resultList.forEach(s -> writer.println(s));
+            ResultSet resultSet = Util.sqlQuery(paramSet, "BookCount");
+
+            while (resultSet.next()) {
+                String rec = "";
+                for (int i = 1; i <= resultSet.getMetaData().getColumnCount(); i++) {
+                    rec = rec + resultSet.getString(i) + "\t";
+                }
+                writer.println(rec);
+            }
+
         } catch (SQLException e) {
-            e.getSQLState();
+            throw new RuntimeException();
         }
     }
 
