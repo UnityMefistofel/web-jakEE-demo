@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="web-jakEE-demo:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>web-jakEE-demo</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="web-jakEE-demo-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="web-jakEE-demo:war exploded" />
+    </root>
+  </artifact>
+</component>
